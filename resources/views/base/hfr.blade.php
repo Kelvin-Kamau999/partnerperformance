@@ -69,7 +69,17 @@
 				<center><div class="loader"></div></center>
 			</div>
 		</div>
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+			    HTS Testing & Yield Dissagregations <div class="display_date"></div>
+		    </div>
+			<div class="panel-body" id="testing_dis">
+				<center><div class="loader"></div></center>
+			</div>
+		</div>
 	</div>
+
+
 </div>
 
 <div class="row">
@@ -247,6 +257,7 @@
 	function reload_page()
 	{
 		$("#testing").html("<center><div class='loader'></div></center>");
+		
 		$("#linkage").html("<center><div class='loader'></div></center>");
 		$("#tx_curr").html("<center><div class='loader'></div></center>");
 		$("#tx_mmd").html("<center><div class='loader'></div></center>");
@@ -265,6 +276,7 @@
 		$("#net_new").load("{{ url('hfr/net_new') }}");
 		$("#tx_crude").load("{{ url('hfr/tx_crude') }}");
 		$("#testing").load("{{ url('hfr/testing') }}");
+		$("#testing_dis").load("{{ url('hfr/testing_dis') }}");
 		$("#linkage").load("{{ url('hfr/linkage') }}");
 		$("#tx_curr").load("{{ url('hfr/tx_curr') }}");
 		$("#tx_mmd").load("{{ url('hfr/tx_mmd') }}");
@@ -279,11 +291,12 @@
 		$("#target_donut_prep_new").load("{{ url('hfr/target_donut/prep_new') }}");
 		$("#target_donut_tx_curr").load("{{ url('hfr/target_donut/tx_curr') }}");
 	}
-
+ console.log('filter_groupby')
 
 	$().ready(function(){
 
 		$("#misassigned_facilities").html("<center><div class='loader'></div></center>");
+		$("#testing_dis").html("<center><div class='loader'></div></center>");
 		$("#misassigned_facilities").load("{{ url('hfr/misassigned_facilities') }}");
 		
 		date_filter('financial_year', 2021, '{{ $date_url }}');

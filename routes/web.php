@@ -168,6 +168,7 @@ Route::prefix('violence')->name('violence.')->group(function(){
 
 Route::prefix('hfr')->name('hfr.')->group(function(){
 	Route::get('testing', 'HfrController@testing')->name('testing');
+	Route::get('testing_dis', 'HfrController@testing_dis')->name('testing_dis');
 	Route::get('linkage', 'HfrController@linkage')->name('linkage');
 	Route::get('tx_curr', 'HfrController@tx_curr')->name('tx_curr');
 	Route::get('tx_mmd', 'HfrController@tx_mmd')->name('tx_mmd');

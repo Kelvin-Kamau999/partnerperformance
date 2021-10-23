@@ -43,8 +43,10 @@ class HfrController extends Controller
             ->groupBy('view_facilities.id')
             ->having('tests', '>', 0)
 			->get();
+		
 
 		$data['div'] = str_random(15);
+		// dd($data);
 
 		return view('tables.misassigned_facilities', $data);
 	}
@@ -86,6 +88,72 @@ class HfrController extends Controller
 			$i++;
 		}	
 		return view('charts.dual_axis', $data);
+	}
+	public function testing_dis()
+	{
+		// DB::enableQueryLog();
+		$data = Lookup::table_data();
+		$tests = HfrSubmission::columns(true, 'hts_tst'); 
+		$pos = HfrSubmission::columns(true, 'hts_tst_pos');
+		$sql = $this->get_hfr_sum($tests, 'tests') . ', ' . $this->get_hfr_sum($pos, 'pos');
+		
+
+
+		$data['rows'] = DB::table($this->my_table)
+		->when(true, $this->get_joins_callback_weeks($this->my_table))
+		->selectRaw($sql)
+		// ->whereRaw(Lookup::active_partner_query())
+		->when(true, $this->get_callback('tests'))
+		->get();
+		
+		
+		// = DB::table($this->my_table)
+		// 	// ->join('view_facilities', 'view_facilities.id', '=', 'd_hfr_submission.facility')
+		// 	// ->join('weeks', 'weeks.id', '=', 'd_hfr_submission.week_id')
+		// 	->when(true, $this->get_joins_callback_weeks($this->my_table))
+		// 	->selectRaw($sql)
+		// 	->whereRaw(Lookup::active_partner_query())
+		// 	->when(true, $this->get_callback('tests'))
+		// 	->get();
+		
+
+		$data['div'] = str_random(15);
+		// $data['yAxis'] = "Total Number Tested";
+		// $data['yAxis2'] = "Yield (%)";
+		// $data['data_labels'] = true;
+		// $data['no_column_label'] = true;
+		// $data['suffix'] = '%';
+
+
+		// Lookup::bars($data, ["Positive", "Negative", "Yield"], "column", ["#ff0000", "#00ff00", "#3023ea"]);
+		// Lookup::splines($data, [2]);
+		// $data['outcomes'][2]['tooltip'] = array("valueSuffix" => ' %');
+		// Lookup::yAxis($data, 0, 1);
+
+		// $i=0;
+		// $x = (count($rows)-1);
+		// foreach ($rows as $key => $row){
+		// 	if(!$row->tests) continue;
+		// 	if ($i = $x){
+		// 	$data['categories'][$i] = Lookup::get_category($row);
+
+		// 	$data["outcomes"][0]["data"][$i] = (int) $row->pos;
+		// 	$data["outcomes"][1]["data"][$i] = (int) ($row->tests - $row->pos);
+		// 	$data["outcomes"][2]["data"][$i] = Lookup::get_percentage($row->pos, $row->tests);
+		// 	}
+
+		// 	$i++;
+		// }	
+		// return DB::getQueryLog();
+		// dd($data);
+
+		return view('tables.testing_dis', $data);
+
+
+
+
+
+
 	}
 
 	public function linkage()
