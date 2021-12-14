@@ -91,7 +91,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="html2pdf__page-break"></div>
 	<div class="col-md-4 col-sm-12 col-xs-12">
 		<div class="panel panel-default">
 		    <div class="panel-heading">
@@ -103,7 +102,6 @@
 		</div>
 	</div>
 </div>
-<div class="html2pdf__page-break"></div>
 
 <div class="row">
 	<div class="col-md-3 col-sm-12 col-xs-12">
@@ -154,7 +152,6 @@
 		</div>
 	</div>
 </div>
-<div class="html2pdf__page-break"></div>
 
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
